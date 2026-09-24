@@ -98,54 +98,54 @@ Route::middleware('auth')->group(function () {
 
     // Penilaian (area supervisor: admin, supervisor, kepala sekolah, pengawas)
     Route::middleware('role:admin,supervisor,kepala_sekolah,pengawas')->group(function () {
-    Route::get('/pemantauan', InstrumentsIndex::class)->name('pemantauan.index');
-    Route::get('/pemantauan/create', InstrumentForm::class)->name('pemantauan.create');
-    Route::get('/pemantauan/{instrument}/edit', InstrumentForm::class)->name('pemantauan.edit');
-    Route::get('/pemantauan/rekapitulasi', InstrumentsRekap::class)->name('pemantauan.rekapitulasi');
+        Route::get('/pemantauan', InstrumentsIndex::class)->name('pemantauan.index');
+        Route::get('/pemantauan/create', InstrumentForm::class)->name('pemantauan.create');
+        Route::get('/pemantauan/{instrument}/edit', InstrumentForm::class)->name('pemantauan.edit');
+        Route::get('/pemantauan/rekapitulasi', InstrumentsRekap::class)->name('pemantauan.rekapitulasi');
 
-    Route::get('/pre-observations', PreObservationsIndex::class)->name('pre-observations.index');
-    Route::get('/pre-observations/create', PreObservationForm::class)->name('pre-observations.create');
-    Route::get('/pre-observations/{preObservation}/edit', PreObservationForm::class)->name('pre-observations.edit');
+        Route::get('/pre-observations', PreObservationsIndex::class)->name('pre-observations.index');
+        Route::get('/pre-observations/create', PreObservationForm::class)->name('pre-observations.create');
+        Route::get('/pre-observations/{preObservation}/edit', PreObservationForm::class)->name('pre-observations.edit');
 
-    Route::get('/konferensis', KonferensisIndex::class)->name('konferensis.index');
-    Route::get('/konferensis/create', KonferensiForm::class)->name('konferensis.create');
-    Route::get('/konferensis/{konferensi}/edit', KonferensiForm::class)->name('konferensis.edit');
-    Route::get('/konferensis/{konferensi}/cetak', \App\Livewire\Konferensis\Cetak::class)->name('konferensis.cetak');
-    Route::get('/konferensis/{konferensi}/foto', \App\Livewire\Konferensis\Photos::class)->name('konferensis.photos');
-    Route::get('/konferensis/{konferensi}/foto/{index}/download', function (App\Models\PreObservationKonferensi $konferensi, int $index) {
-        $photos = array_values(array_filter((array) $konferensi->dokumentasi_foto));
+        Route::get('/konferensis', KonferensisIndex::class)->name('konferensis.index');
+        Route::get('/konferensis/create', KonferensiForm::class)->name('konferensis.create');
+        Route::get('/konferensis/{konferensi}/edit', KonferensiForm::class)->name('konferensis.edit');
+        Route::get('/konferensis/{konferensi}/cetak', \App\Livewire\Konferensis\Cetak::class)->name('konferensis.cetak');
+        Route::get('/konferensis/{konferensi}/foto', \App\Livewire\Konferensis\Photos::class)->name('konferensis.photos');
+        Route::get('/konferensis/{konferensi}/foto/{index}/download', function (App\Models\PreObservationKonferensi $konferensi, int $index) {
+            $photos = array_values(array_filter((array) $konferensi->dokumentasi_foto));
 
-        abort_unless(isset($photos[$index]), 404);
-        abort_unless(\Illuminate\Support\Facades\Storage::disk('public')->exists($photos[$index]), 404);
+            abort_unless(isset($photos[$index]), 404);
+            abort_unless(\Illuminate\Support\Facades\Storage::disk('public')->exists($photos[$index]), 404);
 
-        return \Illuminate\Support\Facades\Storage::disk('public')->download($photos[$index]);
-    })->name('konferensis.photo-download');
-    Route::get('/konferensis/{konferensi}/foto/unduh-semua', function (App\Models\PreObservationKonferensi $konferensi) {
-        $photos = array_values(array_filter((array) $konferensi->dokumentasi_foto));
-        abort_if(empty($photos), 404);
+            return \Illuminate\Support\Facades\Storage::disk('public')->download($photos[$index]);
+        })->name('konferensis.photo-download');
+        Route::get('/konferensis/{konferensi}/foto/unduh-semua', function (App\Models\PreObservationKonferensi $konferensi) {
+            $photos = array_values(array_filter((array) $konferensi->dokumentasi_foto));
+            abort_if(empty($photos), 404);
 
-        $zipName = 'dokumentasi-konferensi-'.$konferensi->id.'-'.now()->format('Ymd-His').'.zip';
-        $tmpPath = storage_path('app/'.$zipName);
-        $zip = new \ZipArchive;
-        $zip->open($tmpPath, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
+            $zipName = 'dokumentasi-konferensi-'.$konferensi->id.'-'.now()->format('Ymd-His').'.zip';
+            $tmpPath = storage_path('app/'.$zipName);
+            $zip = new \ZipArchive;
+            $zip->open($tmpPath, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
 
-        foreach ($photos as $i => $path) {
-            $full = \Illuminate\Support\Facades\Storage::disk('public')->path($path);
-            if (is_file($full)) {
-                $zip->addFile($full, ($i + 1).'-'.basename($path));
+            foreach ($photos as $i => $path) {
+                $full = \Illuminate\Support\Facades\Storage::disk('public')->path($path);
+                if (is_file($full)) {
+                    $zip->addFile($full, ($i + 1).'-'.basename($path));
+                }
             }
-        }
-        $zip->close();
+            $zip->close();
 
-        return response()->download($tmpPath)->deleteFileAfterSend();
-    })->name('konferensis.photos-download');
+            return response()->download($tmpPath)->deleteFileAfterSend();
+        })->name('konferensis.photos-download');
 
-    Route::get('/post-supervisions', PostSupervisionsIndex::class)->name('post-supervisions.index');
-    Route::post('/post-supervisions/import/{bagian}', [PostSupervisionTransferController::class, 'import'])->name('post-supervisions.import');
-    Route::get('/post-supervisions/create', PostSupervisionForm::class)->name('post-supervisions.create');
-    Route::get('/post-supervisions/cetak', \App\Livewire\PostSupervisions\Cetak::class)->name('post-supervisions.cetak');
-    Route::get('/post-supervisions/{postSupervision}/edit', PostSupervisionForm::class)->name('post-supervisions.edit');
-    });
+        Route::get('/post-supervisions', PostSupervisionsIndex::class)->name('post-supervisions.index');
+        Route::post('/post-supervisions/import/{bagian}', [PostSupervisionTransferController::class, 'import'])->name('post-supervisions.import');
+        Route::get('/post-supervisions/create', PostSupervisionForm::class)->name('post-supervisions.create');
+        Route::get('/post-supervisions/cetak', \App\Livewire\PostSupervisions\Cetak::class)->name('post-supervisions.cetak');
+        Route::get('/post-supervisions/{postSupervision}/edit', PostSupervisionForm::class)->name('post-supervisions.edit');
+    }); // <-- Penutup group middleware role penilai yang sebelumnya kurang
 
     Route::get('/profile', ProfileEdit::class)->name('profile.edit');
 });

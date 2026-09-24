@@ -4,7 +4,7 @@
 
     <!-- KODE TAMBAHAN UNTUK UJI COBA SINKRONISASI -->
     <div class="mb-4 p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs rounded-lg font-medium">
-        ✨ Uji Coba Sinkronisasi dari VS Code Berhasil!
+        ✨ Uji Coba Sinkronisasi dari VS Code Berhasil! coba lagi
     </div>
 
     <form wire:submit="login" class="space-y-4">

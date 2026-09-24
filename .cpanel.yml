@@ -1,0 +1,4 @@
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/supervisi/repositories/supervisi_guru_laravel/
+    - /bin/cp -R * $DEPLOYPATH

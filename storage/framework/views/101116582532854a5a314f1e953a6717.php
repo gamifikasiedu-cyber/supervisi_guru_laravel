@@ -1,0 +1,2 @@
+<span><?php echo $noDataLabel; ?></span>
+<?php /**PATH D:\project\supervisi_guru laravel\vendor\power-components\livewire-powergrid\resources\views\components\table\no-data-label.blade.php ENDPATH**/ ?>

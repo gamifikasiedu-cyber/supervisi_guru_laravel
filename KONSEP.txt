@@ -1,0 +1,30 @@
+Detail Fitur Berdasarkan Hak Akses 
+(Role)
+1. Dashboard ADMIN (Pengelola Data Master)Fungsi Utama: Mengelola seluruh fondasi data aplikasi.
+Fitur Spesifik:User Management: Membuat akun login dan menentukan peran (Siapa Guru, siapa Supervisor, Kepala Sekolah, dan Pengawas).
+
+Academic Master: Input data siswa, guru, kelas, mata pelajaran, dan jadwal. 
+
+2. Dashboard GURU (Pelaksana Pembelajaran)Fungsi Utama: Mengelola Kegiatan Belajar Mengajar (KBM) dan penilaian.
+Fitur Spesifik:Ruang Kelas Digital: Melihat daftar siswa yang diajar di kelasnya.Agenda & Presensi: Mengisi jurnal mengajar harian dan mengabsen siswa secara real-time.
+Input Nilai: Memasukkan nilai tugas, UTS, UAS, dan nilai praktik (khusus guru SMK).
+Portofolio Supervisi: Mengunggah (upload) perangkat ajar (Modul Ajar, ATP, Job Sheet) untuk diperiksa oleh Supervisor.
+
+3. Dashboard SUPERVISOR (Tim Penilai / Waka Kurikulum / Kakomli)Fungsi Utama: Melakukan penjaminan mutu guru di kelas/bengkel.Fitur Spesifik:Plotting Jadwal Supervisi:
+ Menentukan hari dan jam pelaksanaan observasi mengajar guru.
+E-Instrumen Penilaian: Lembar penilaian digital (Pra-Observasi, Observasi Kelas, dan Pasca-Observasi) langsung dari tablet atau smartphone saat berada di kelas.
+Feedback & Rekomendasi: Kolom input catatan perbaikan dan rencana tindak lanjut untuk guru yang disupervisi.
+
+4. Dashboard KEPALA SEKOLAH (Manajemen & Pengambil Keputusan)Fungsi Utama: Memantau seluruh aktivitas sekolah dan memberikan persetujuan legalitas.
+Fitur Spesifik:Executive Dashboard: Grafik real-time mengenai persentase kehadiran guru/siswa, rata-rata nilai akademik, dan progres supervisi sekolah.
+Approval (Persetujuan): Validasi akhir dokumen penting (seperti menyetujui jadwal pelajaran baru atau menandatangani Raport/Leger digital).
+Laporan Hasil Supervisi: Melihat rekapitulasi nilai kinerja guru untuk menentukan kebijakan (misal: promosi atau pelatihan guru).
+
+5. Dashboard PENGAWAS SEKOLAH (Auditor Eksternal dari Dinas)Fungsi Utama: Memantau kepatuhan standar nasional pendidikan di sekolah tersebut tanpa perlu datang secara fisik setiap saat.
+Fitur Spesifik:Akses Read-Only Data Mutu: Melihat dokumen kurikulum, ketercapaian target kurikulum, dan grafik nilai sekolah.
+Audit Hasil Supervisi: Memeriksa apakah Kepala Sekolah dan Supervisor sudah menjalankan siklus supervisi akademik dengan benar.
+Catatan Pengawas: Kolom khusus untuk memberikan rekomendasi pembenahan sekolah langsung ke akun Kepala Sekolah.
+Alur Integrasi Antar Peran (Contoh Kasus: Supervisi Akademik)Admin membuat akun untuk Guru, Supervisor, Kepala Sekolah, dan Pengawas.
+Guru mengunggah perangkat ajar di dashboardnya.Supervisor memeriksa dokumen tersebut, datang ke kelas, dan mengisi nilai observasi lewat dashboard Supervisor.
+Kepala Sekolah melihat rekap nilai supervisi dari seluruh guru dan menyetujuinya (Approve).
+Pengawas dari kediamannya membuka dashboard untuk mengecek laporan supervisi tersebut sebagai bukti ketercapaian standar mutu sekolah.

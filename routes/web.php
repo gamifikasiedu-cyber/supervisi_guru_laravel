@@ -96,7 +96,7 @@ Route::middleware('auth')->group(function () {
         return Storage::disk('public')->download($document->file_path, $document->file_name);
     })->name('documents.download');
 
-    // Penilaian (area supervisor: admin, supervisor, kepala sekolah, pengawas)
+    // Penilaian
     Route::middleware('role:admin,supervisor,kepala_sekolah,pengawas')->group(function () {
         Route::get('/pemantauan', InstrumentsIndex::class)->name('pemantauan.index');
         Route::get('/pemantauan/create', InstrumentForm::class)->name('pemantauan.create');
@@ -145,7 +145,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/post-supervisions/create', PostSupervisionForm::class)->name('post-supervisions.create');
         Route::get('/post-supervisions/cetak', \App\Livewire\PostSupervisions\Cetak::class)->name('post-supervisions.cetak');
         Route::get('/post-supervisions/{postSupervision}/edit', PostSupervisionForm::class)->name('post-supervisions.edit');
-    }); // <-- Penutup group middleware role penilai yang sebelumnya kurang
+    });
 
     Route::get('/profile', ProfileEdit::class)->name('profile.edit');
 });

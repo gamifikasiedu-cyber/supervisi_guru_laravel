@@ -2,6 +2,11 @@
     <h2 class="text-lg font-bold text-slate-800">Selamat datang kembali</h2>
     <p class="text-sm text-slate-500 mb-5">Masuk untuk mengelola supervisi akademik</p>
 
+    <!-- KODE TAMBAHAN UNTUK UJI COBA SINKRONISASI -->
+    <div class="mb-4 p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs rounded-lg font-medium">
+        ✨ Uji Coba Sinkronisasi dari VS Code Berhasil!
+    </div>
+
     <form wire:submit="login" class="space-y-4">
         <div>
             <label class="text-sm font-medium text-slate-700">Email</label>
